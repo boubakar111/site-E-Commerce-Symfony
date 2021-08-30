@@ -3,7 +3,7 @@
 {% block title %}Panier AlloWii{% endblock %}
 
 {% block body %}
-{{ include('partial/title_section.html.twig',{'name': 'Votre panier'}) }}
+    {{ include('partial/title_section.html.twig',{'name': 'Votre panier'}) }}
 
     <div class="section">
         <div class="container">
@@ -22,20 +22,35 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {% set subTotal = 0  %}
+                            {% for  produits  in panierProduit %}
 
-                            {% for  produits  in panierProduit.products  %}
-                            <tr>
-                                <td class="product-thumbnail"><a href="#"><img src="assets/uploads/imageProduct/{{ produits.product.image }}" alt=""></a></td>
-                                <td class="product-name" data-title="Product"><a href="#">{{ produits.product.name }}</a></td>
-                                <td class="product-price" data-title="Price">{{ produits.product.prix/100}}</td>
-                                <td class="product-quantity" data-title="Quantity"><div class="quantity">
-                                        <a href="{{ path('delete_panier',{'id':produits.product.id}) }}" type="button" value="-" class="minus"> - </a>
-                                        <input type="text" name="quantity" value="{{ produits.quantity}}" title="Qty" class="qty" size="4">
-                                        <a href="{{ path('add_panier',{'id':produits.product.id}) }}" type="button" value="+" class="minus"> + </a>
-                                    </div></td>
-                                <td class="product-subtotal" data-title="Total">{{ produits.product.prix/100 * produits.quantity }}</td>
-                                <td class="product-remove" data-title="Remove"><a href="{{ path('delete_All_panier',{'id':produits.product.id}) }}"><i class="ti-close"></i></a></td>
-                            </tr>
+                                {% set subTotal  = subTotal+(produits.product.prix/100 *  produits.quantity)%}
+
+                                <tr>
+                                    <td class="product-thumbnail"><a href="#"><img
+                                                    src="assets/uploads/imageProduct/{{ produits.product.image }}"
+                                                    alt=""></a></td>
+                                    <td class="product-name" data-title="Product"><a
+                                                href="#">{{ produits.product.name }}</a></td>
+                                    <td class="product-price" data-title="Price">{{ produits.product.prix/100 }}</td>
+                                    <td class="product-quantity" data-title="Quantity">
+                                        <div class="quantity">
+                                            <a href="{{ path('delete_panier',{'id':produits.product.id}) }}"
+                                               type="button" value="-" class="minus"> - </a>
+                                            <input type="text" name="quantity" value="{{ produits.quantity }}"
+                                                   title="Qty" class="qty" size="4">
+                                            <a href="{{ path('add_panier',{'id':produits.product.id}) }}" type="button"
+                                               value="+" class="minus"> + </a>
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal"
+                                        data-title="Total">{{ produits.product.prix/100 * produits.quantity }} €
+                                    </td>
+                                    <td class="product-remove" data-title="Remove"><a
+                                                href="{{ path('delete_All_panier',{'id':produits.product.id}) }}"><i
+                                                    class="ti-close"></i></a></td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                             <tfoot>
@@ -73,20 +88,16 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="cart_total_label">Panier total HT</td>
-                                    <td class="cart_total_amount">${{  panierProduit.data.totalHT }}</td>
+                                    <td class="cart_total_label">Panier total  </td>
+                                    <td class="cart_total_amount">{{ subTotal }} €</td>
                                 </tr>
                                 <tr>
-                                    <td class="cart_total_label">Panier total TVA </td>
-                                    <td class="cart_total_amount">${{  panierProduit.data.taxe }}</td>
+                                    <td class="cart_total_label">Panier total TVA</td>
+                                    <td class="cart_total_amount"> {{ (subTotal * 0.2)| round(2 , 'float')}} €</td>
                                 </tr>
                                 <tr>
-                                    <td class="cart_total_label">Shipping</td>
-                                    <td class="cart_total_amount">Free Shipping</td>
-                                </tr>
-                                <tr>
-                                    <td class="cart_total_label">Pnier Total TTC </td>
-                                    <td class="cart_total_amount"><strong>${{ panierProduit.data.totalTTC }}</strong></td>
+                                    <td class="cart_total_label">Pnier Total TTC</td>
+                                    <td class="cart_total_amount"><strong>{{ subTotal | round(2 , 'float')}} €</strong></td>
                                 </tr>
                                 </tbody>
                             </table>
