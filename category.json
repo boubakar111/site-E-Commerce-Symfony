@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Homme",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 2,
+    "name": "Femme",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 3,
+    "name": "Bijou",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 4,
+    "name": "Bonnets",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 5,
+    "name": "Drone",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 6,
+    "name": "Gadget",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 7,
+    "name": "Montre",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 8,
+    "name": "Téléphone",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": null
+  },
+  {
+    "id": 9,
+    "name": "Chaussur de Sport",
+    "description": "<failed to load>\njava.sql.SQLException: no data\r\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:589)\r\n\tin LobInfo.fromClob(LobInfo.java:71)\r\n",
+    "image": "drone_5.png"
+  }
+]

@@ -59,7 +59,7 @@
     <div class="bottom_header dark_skin main_menu_uppercase">
         <div class="container">
             <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="{{ path('home') }}">
                     <img class="logo_light" src="{{ asset('assets/images/logo_light.png') }}" alt="logo"/>
                     <img class="logo_dark" src="{{ asset('assets/images/logo_dark.png') }}" alt="logo"/>
                 </a>
@@ -107,20 +107,20 @@
                         <a class="nav-link cart_trigger" href="{{ path('panier') }}" data-toggle="dropdown">
                             <i class="linearicons-cart"></i>
                             <span class="cart_count">
-                                {% set qt = 0  %}
-                                {% for element in app.session.get('cartData') %}
-                                {%  set qt = qt + element.quantity %}
 
-                                {% endfor %}
-                                {{ qt }}
+{#                                {% if app.session('cartData') %}#}
+
+{#                                    {{ app.session.get('cartData').data.quantityPanier }}#}
+
+{#                                    {% else %}#}
+{#                                    0#}
+{#                                {% endif %}#}
+
                             </span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
-                                {% if app.session.get('cartData') %}
-
-                                    {% set total = 0 %}
-                                    {% for element in app.session.get('cartData') %}
-                                     {% set total = total +(element.product.prix /100 * element.quantity ) %}
+                                {% if app.session.get('panier') %}
+                                    {% for element in app.session.get('cartData').products %}
                                         <li>
                                             <a href="{{ path('delete_All_panier',{'id':element.product.id}) }}" class="item_remove"><i class="ion-close"></i></a>
                                             <a href="#"><img src="/assets/uploads/imageProduct/{{ element.product.image }}" alt="{{ element.product.name }}"></a>
@@ -136,9 +136,9 @@
                             {% if app.session.get('cartData') %}
                                 <div class="cart_footer">
                                     <p class="cart_total"><strong>total: </strong> <span class="cart_price"> <span
-                                                    class="price_symbole">$</span></span>{{ total }}</p>
+                                                    class="price_symbole">$</span></span>{{ app.session.get('cartData').data.totalTTC}}</p>
                                     <p class="cart_buttons"><a href="#" class="btn btn-fill-line rounded-0 view-cart">View
-                                            Cart</a><a href="#" class="btn btn-fill-out rounded-0 checkout">Checkout</a>
+                                            Cart</a><a href="{{ path('checkout') }}" class="btn btn-fill-out rounded-0 checkout">Checkout</a>
                                     </p>
                                 </div>
                             {% endif %}

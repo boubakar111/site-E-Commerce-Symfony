@@ -23,7 +23,7 @@ class PanierController extends AbstractController
         $panier = $this->panierService->getFullPanier();
 
         //si le panier et vide 
-        if(!$panier){
+        if(!isset(  $panier['products'])){
             return $this->redirectToRoute('home');
         }
 

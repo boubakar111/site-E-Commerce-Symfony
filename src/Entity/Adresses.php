@@ -175,4 +175,17 @@ class Adresses
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $result = $this->fullName . '[spr]';
+        if($this->getCompany()){
+            $result .=$this->company."[spr]";
+        }
+        $result .= $this->adresse . '[spr]';
+        $result .= $this->complAdresse. '[spr]';
+        $result .= $this->codePostal. '[spr]';
+        $result .= $this->pays.'[spr]';
+        return $result;
+    }
 }

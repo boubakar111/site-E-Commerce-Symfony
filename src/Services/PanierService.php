@@ -9,12 +9,13 @@ class PanierService
 {
     private $session;
     private $repoProduct;
-    private $tva = 0.2;
+    private $tva  = 0.2;
 
-    public function __construct(SessionInterface $session, ProductRepository $repoProduct)
+    public function __construct(SessionInterface $session, ProductRepository $repoProduct )
     {
         $this->session = $session;
         $this->repoProduct = $repoProduct;
+
     }
 
 
@@ -55,21 +56,29 @@ class PanierService
     {
         $panier = $this->getPanier();
         $fullPanier = [];
+        $quantityPanier = 0 ;
+        $subTotal = 0 ;
         foreach ($panier as $id => $quantity) {
             $product = $this->repoProduct->find($id);
             if ($product) {
-                $fullPanier[] = [
+                $fullPanier['products'] []= [
                     'quantity' => $quantity,
                     'product' => $product,
                 ];
-
+                $quantityPanier += $quantity;
+                $subTotal += $quantity *$product->getPrix()/100;
             } else {
                 //id incorrecte , porduit n'existe pas
                 $this->deleteFromPanier($id);
             }
 
         }
-
+         $fullPanier['data'] = [
+             'quantityPanier'=>$quantityPanier,
+             'subTotalHT'=>$subTotal,
+             'taxe'=> round($subTotal * $this->tva ,2),
+             'totalTTC'=>  round(($subTotal +($subTotal * $this->tva )), 2)
+         ];
         return $fullPanier;
     }
 
@@ -110,17 +119,6 @@ class PanierService
         $this->updatePanier([]);
     }
 
-
-    //total du panier
-    public function totalPnier($panier)
-    {
-        $total = 0;
-        foreach ($panier as $produit) {
-            $prix = $produit['product']->getPrix();
-            $total += $produit['quantity'] * ($produit['product']->getPrix() / 100);;
-        };
-        return $total;
-    }
 }
 
 ?>
